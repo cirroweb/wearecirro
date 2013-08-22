@@ -4,11 +4,7 @@ var $projectTitle = $('.project-title'),
     $royalSlider = $('.royal-slider'),
     slider;
 
-$projectTitle.fadeIn(500);
-
-setTimeout(function() {
-  $projectTitle.fadeOut(500);
-}, 4000);
+fadeProjectTitleInAndOut()
 
 slider = $royalSlider.royalSlider({
   randomizeSlides: true,
@@ -22,5 +18,19 @@ slider = $royalSlider.royalSlider({
     navigateByCenterClick: true
   }
 }).data('royalSlider');
+
+slider.ev.on('rsAfterSlideChange', function() {
+  if (slider.currSlideId === 0) {
+    fadeProjectTitleInAndOut()
+  }
+});
+
+function fadeProjectTitleInAndOut() {
+  $projectTitle.fadeIn(500);
+
+  setTimeout(function() {
+    $projectTitle.fadeOut(500);
+  }, 4000);
+};
 
 })(jQuery, window, document, undefined);
