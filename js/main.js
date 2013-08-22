@@ -15,6 +15,7 @@
 
 			self.wW, self.wH;
 			self.$loader   = $('#loader');
+			self.$gif      = $('#gif')
 			self.$navBtn   = $('#nav-btn');
 			self.$phoneNav = $('nav.phone-nav');
 			self.$intro    = $('#intro');
@@ -23,6 +24,7 @@
 			self.$navBtn.on("click", self.closetNav);
 
 			self.hideLoader();
+			self.heads();
 			self.scrollPosition();
 			self.introCenter();
 			//self.workHover();
@@ -39,8 +41,11 @@
 			var self = this;
 
 			setTimeout( function(){
-				self.$loader.fadeOut();
-			}, 1000)
+				self.$gif.fadeOut();
+				setTimeout( function(){
+					self.$loader.fadeOut();
+				}, 500)
+			}, 2000)
 		},
 
 		closetNav: function() {
@@ -75,6 +80,23 @@
 			var diff = (wH - iH) / 2;
 
 			$intro.css('top', diff);			
+		},
+
+		heads: function() {
+			var wH = page.wH / 1.5,
+					wW = page.wW / 1.5,
+					$heads = $('.heads-container img');
+
+			$.each($heads, function() {
+				var randomW = Math.floor(Math.random()*wW);
+				var randomH= Math.floor(Math.random()*wH);
+
+				$(this).css({
+					top: randomH,
+					left: randomW
+				});
+			})
+			
 		},
 
 		workHover: function() {
