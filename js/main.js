@@ -11,9 +11,9 @@
 	var page = {
 
 		init: function() {
-
 			var self = this;
 
+			self.wW, self.wH;
 			self.$loader   = $('#loader');
 			self.$navBtn   = $('#nav-btn');
 			self.$phoneNav = $('nav.phone-nav');
@@ -25,82 +25,67 @@
 			self.hideLoader();
 			self.scrollPosition();
 			self.introCenter();
-			self.workHover();
-
+			//self.workHover();
 		},
 
 		calculateWindowDimensions: function() {
-
 			var self = this;
 
 			self.wW = $window.width();
 			self.wH = $window.height();
-
 		},
 
 		hideLoader: function() {
-
 			var self = this;
 
 			setTimeout( function(){
-
 				self.$loader.fadeOut();
-
 			}, 1000)
-
 		},
 
 		closetNav: function() {
-
 			var self = page;
-
 			// CALC HEIGHT OF NAV ELEMENTS
 
 			// toggle the open class on the nav
 			page.$phoneNav.toggleClass('open');
-
 		},
 
 		closetNavResize: function() {
-
 			var self = this;
 			var phoneNav = $('nav.phone-nav');
 			var isOpen = ~~phoneNav.hasClass('open');
 
 			// close nav closet if larger than 768px && open
 			if (self.wW >= 768 && isOpen) {
-
 				page.closetNav();
 			}
-
 		},
 
 		scrollPosition: function() {
-
 			var self = this;
 			self.scrollPos = $window.scrollTop();
 
 		},
 
 		introCenter: function() {
-			
+			var wH = page.wH;
+			var iH = page.$intro.height();
+			var $intro = page.$intro;
+			var diff = (wH - iH) / 2;
+
+			$intro.css('top', diff);			
 		},
 
 		workHover: function() {
-
 			var self = this;
 			var i    = 1000;
 
 			self.$work.mouseenter(function(){
-
 				i+= 2;
-
 				$(this).css('z-index', i);
-
 			})
-
 		}
-
 	};
 
 	// Attach the page controller to the cirro namespace
@@ -108,27 +93,22 @@
 
 	// Window load
 	$window.load(function() {
-
 		setTimeout(function() {
 			page.init();
 		})
-		//page.calculateWindowDimensions();
-
+		page.calculateWindowDimensions();
 	});
 
 	// Window scroll
 	$window.scroll(function() {
-
 		page.scrollPosition();
-
 	});
 
 	// Window resize
 	$window.resize(function() {
-
 		page.calculateWindowDimensions();
+		page.introCenter();
 		page.closetNavResize();
-
 	});
 
 }( jQuery, window, document ));
