@@ -1,9 +1,67 @@
 //  CIRRO CUSTOM SASS
 // ----------------------------------------------------------------------------
 
+header
+	position: fixed
+	top: 0
+	right: 2.5%
+	width: 95%
+	overflow: hidden
+	padding: 20px 0 10px
+	border-bottom: 2px solid
+	-webkit-text-rendering: antialiased
+	a[href="/"]
+		float: left
+		color: white
+		text-decoration: none
+	nav
+		float: right
+		ul
+			list-style: none
+			margin: 0
+			li
+				display: inline-block
+				a
+					color: $blue
+					text-decoration: none
+					position: relative
+					margin-left: 40px
+					&:before
+						content: '✔'
+						position: absolute
+						left: -20px
+						top: -2px
+						font-size: 20px
+						color: white
+					&:hover
+						color: white
+						text-decoration: none
+						&:before
+							content: '⸊'
+
+
+
+#loader
+	position: fixed
+	z-index: 2000
+	top: 0
+	bottom: 0
+	left: 0
+	right: 0
+	height: 100%
+	width: 100%
+	background: url(../img/loading.gif) no-repeat center center black
+
+.btn-load-wrap
+	display: inline-block
+	position: relative
+
+.loading
+	background: url(../img/loading.gif) no-repeat center center
+
 .frame
 	position: fixed
-	background: black
+	background: white
 	z-index: 420420
 	+transition(1s)
 	&.topper
@@ -28,103 +86,10 @@
 		width: 3px
 
 #intro
-	width: 100%
-	height: 100%
-	background: black
-	font-family: $altFontFamily
-	font-weight: 400
-	font-style: italic
 	-webkit-font-smoothing: antialiased
-	color: white
 	text-align: center
-	+box-shadow(0 200px 200px 200px black)
+	margin-top: 200px
 	#logo
-		margin: 200px 0 50px 0
+		margin: 0 0 50px 0
 	#intro-txt
-		font-size: 28px
-		max-width: 700px
 		margin: 0 auto
-	.email
-		margin: 30px 0
-	.social
-		a
-			margin: 0 10px
-	a
-		color: white
-
-#team
-	margin: 200px 0
-	text-align: center
-	.human
-		position: relative
-		float: left
-		width: 14.5%
-		margin: 1%
-		border: 1px solid
-		.hover
-			position: absolute
-			opacity: 0
-			top: 0
-			left: 0 
-			right: 0
-			height: 100%
-			.name
-				position: absolute
-				top: 75px
-				left: 0
-				font-size: 18px
-				color: white
-				transform: rotate(-90deg)
-				-webkit-transform: rotate(-90deg)
-				-moz-transform: rotate(-90deg)
-				-o-transform: rotate(-90deg)
-				-ms-transform: rotate(-90deg)
-			&:hover
-				opacity: 1
-
-.site-btn
-	padding: 5px 15px
-	border: 1px solid
-
-.work
-	width: 97%
-	height: 110em
-	margin: 0 auto
-	position: relative
-	margin-bottom: 50px
-	border-top: 3px solid black
-	.work-info
-		padding: 40px 0 0 40px
-		margin-bottom: 20px
-		width: 90%
-		max-width: 600px
-		.work-desc
-	.work-imgs
-		position: relative
-	
-.top
-	position: absolute
-.landl-one
-	width: 70%
-	right: 3%
-	z-index: 200
-.landl-two
-	width: 50%
-	left: 1%
-	top: 300px
-	z-index: 100
-.landl-three
-	width: 27%
-	right: 27%
-	bottom: -700px
-	z-index: 300
-.astral
-	&.one
-		width: 67%
-	&.two
-		margin-left: 80%
-		top: 30em
-	&.three
-		right: 0
-
-

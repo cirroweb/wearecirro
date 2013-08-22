@@ -17,16 +17,14 @@
 			self.$loader   = $('#loader');
 			self.$navBtn   = $('#nav-btn');
 			self.$phoneNav = $('nav.phone-nav');
-			self.$frame    = $('.frame');
 			self.$intro    = $('#intro');
-			self.$work     = $('.top');
 
 			// Init click event handlers
 			self.$navBtn.on("click", self.closetNav);
 
 			self.hideLoader();
 			self.scrollPosition();
-			self.scrollColor();
+			self.introCenter();
 			self.workHover();
 
 		},
@@ -84,14 +82,8 @@
 
 		},
 
-		scrollColor: function() {
-
-			var self = this;
-
-			var height = self.scrollPos;
-
-			self.$intro.css({ 'opacity' : (1 - height/700) });
-
+		introCenter: function() {
+			
 		},
 
 		workHover: function() {
@@ -128,7 +120,6 @@
 	$window.scroll(function() {
 
 		page.scrollPosition();
-		page.scrollColor();
 
 	});
 
