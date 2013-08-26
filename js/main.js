@@ -26,7 +26,7 @@
 			self.hideLoader();
 			// self.heads();
 			self.scrollPosition();
-			self.randomImages('.heads-container', 0, 0);
+			self.randomImages('.heads-container', 0, 0, 'percent');
 			self.introCenter();
 			//self.workHover();
 		},
@@ -83,7 +83,7 @@
 			$intro.css('top', diff);			
 		},
 
-		randomImages: function(wrap, overlap, rotation) {
+		randomImages: function(wrap, overlap, rotation, placement) {
 			// set initial variables
 			var self = this,
 			$wrap = $(wrap),
@@ -94,6 +94,7 @@
 			imgPositionRight = [],
 			imgPositionTop = [],
 			imgPositionBottom = [];
+
 
 			// loop through each img
 			$.each($wrapImgs, function() {
@@ -120,9 +121,16 @@
 
 				// if setting position of first picture, skip checking for collision/overlap
 				if(imgPositionLeft.length === 0) {
+					if(placement == 'percent'){
+						var imgTopFinal = (imgTop/wrapHeight)*100 + '%',
+								imgLeftFinal = (imgLeft/wrapWidth)*100 + '%';
+					} else if(placement == 'pixel') {
+						var imgTopFinal = imgTop + 'px',
+								imgLeftFinal = imgLeft + 'px';
+					}
 					$(this).css({
-						'top': imgTop + 'px',
-						'left': imgLeft + 'px'
+						'top': imgTopFinal,
+						'left': imgLeftFinal
 					});
 
 					// Push up first img positions to proper arrays for checking for collisions/overlap
@@ -166,9 +174,16 @@
 					imgPositionRight.push('right',imgRight);
 					imgPositionBottom.push('bottom',imgBottom);
 					// After finding a successful img placement place the img
+					if(placement == 'percent'){
+						var imgTopFinal = (imgTop/wrapHeight)*100 + '%',
+								imgLeftFinal = (imgLeft/wrapWidth)*100 + '%';
+					} else if(placement == 'pixel') {
+						var imgTopFinal = imgTop + 'px',
+								imgLeftFinal = imgLeft + 'px';
+					}
 					$(this).css({
-						'top': imgTop + 'px',
-						'left': imgLeft + 'px'
+						'top': imgTopFinal,
+						'left': imgLeftFinal
 					});
 				}
 				// Set rotation
